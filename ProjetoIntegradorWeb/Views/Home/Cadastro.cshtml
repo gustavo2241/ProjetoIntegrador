@@ -3,43 +3,43 @@
     ViewData["Title"] = "Consulta";
 }
 
-    <div id="" class="container" align="center">
-        <h2>Cadastro de Produto</h2>
-        <br />
-        <form>
-            <div class="form-group">
-                <label for="formGroupExampleInput">Codigo Produto<span style="color:red;"><b>*</b></span> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Digite apenas números"></i></label>
-                <input type="number" class="form-control" id="codProd" placeholder="Codigo Produto" style="width: 300px;">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Nome Produto<span style="color:red;"><b>*</b></span> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Digite apenas letras"></i></label>
-                <input type="text" class="form-control" id="nomeProd" placeholder="Nome Produto" style="width: 300px;">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Categoria<span style="color:red;"><b>*</b></span></label>
-                <select class="form-control" id="categoriaProd" style="width: 300px;">
-                    <option value="disabilitado" selected disabled hidden>Selecione uma categoria</option>
-                    <option value="alimentos">Alimentos</option>
-                    <option value="limpeza">Produtos de Limpeza</option>
-                    <option value="higiene">Higiene Pessoal</option>
-                    <option value="bebidas">Bebidas</option>
-                    <option value="papelaria">Papelaria</option>
-                    <option value="materiais">Materiais domésticos</option>
-                    <option value="outros">Outros</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Quantidade <span style="color:red;"><b>*</b></span> <i class="fa fa-info-circle"  data-toggle="tooltip" data-placement="right" title="Digite apenas números"></i></label>
-                <input type="number" class="form-control col-xs-3" id="qtdProd" placeholder="Quantidade" style="width: 300px;">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Preço Unitário<span style="color:red;"><b>*</b></span></label>
-                <input type="text" class="form-control col-xs-3" id="precoProd" placeholder="R$ 0,00" style="width: 300px;">
-            </div>
-        </form>
-        <button class="btn btn-success" onclick="cadastraEstoque()">Cadastrar <i class="fa fa-check"></i></button>
-        <button class="btn btn-secondary" onclick="history.go(-1)">Voltar <i class="fa fa-arrow-left"></i></button>
-    </div>
+<div id="" class="container" align="center">
+    <h2>Cadastro de Produto</h2>
+    <br />
+    <form>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Codigo Produto<span style="color:red;"><b>*</b></span> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Digite apenas números"></i></label>
+            <input type="number" class="form-control" id="codProd" placeholder="Codigo Produto" style="width: 300px;">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Nome Produto<span style="color:red;"><b>*</b></span> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Digite apenas letras"></i></label>
+            <input type="text" class="form-control" id="nomeProd" placeholder="Nome Produto" style="width: 300px;">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Categoria<span style="color:red;"><b>*</b></span></label>
+            <select class="form-control" id="categoriaProd" style="width: 300px;">
+                <option value="disabilitado" selected disabled hidden>Selecione uma categoria</option>
+                <option value="ALIMENTOS">Alimentos</option>
+                <option value="LIMPEZA">Produtos de Limpeza</option>
+                <option value="HIGIENE">Higiene Pessoal</option>
+                <option value="BEBIDAS">Bebidas</option>
+                <option value="PAPELARIA">Papelaria</option>
+                <option value="MATERIAIS">Materias Domésticos</option>
+                <option value="OUTROS">Outros</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Quantidade <span style="color:red;"><b>*</b></span> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Digite apenas números"></i></label>
+            <input type="number" class="form-control col-xs-3" id="qtdProd" placeholder="Quantidade" style="width: 300px;">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Preço Unitário<span style="color:red;"><b>*</b></span></label>
+            <input type="text" class="form-control col-xs-3" id="precoProd" placeholder="R$ 0,00" style="width: 300px;">
+        </div>
+    </form>
+    <button class="btn btn-success" onclick="cadastraEstoque()">Cadastrar <i class="fa fa-check"></i></button>
+    <button class="btn btn-secondary" onclick="history.go(-1)">Voltar <i class="fa fa-arrow-left"></i></button>
+</div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -55,7 +55,6 @@
         radixPoint: ",",
         groupSeparator: ".",
         autoGroup: false,
-        prefix: 'R$ ',
         digits: 2,
         digitsOptional: false,
         placeholder: '0',
@@ -63,13 +62,13 @@
 
     function cadastraEstoque() {
 
-        codProd = $("#codProd").val();
-        nomeProd = $("#nomeProd").val();
-        categoriaProd = $("#categoriaProd").val();
-        qtdProd = $("#qtdProd").val();
-        precoProd = $("#precoProd").val();
+        codProduto = $("#codProd").val();
+        nomeProduto = $("#nomeProd").val();
+        categoriaProduto = $("#categoriaProd").val();
+        qtdProduto = $("#qtdProd").val();
+        precoProduto = $("#precoProd").val();
 
-        if (codProd == "" || nomeProd == "" || categoriaProd == null || qtdProd == "" || precoProd == "") {
+        if (codProduto == "" || nomeProduto == "" || categoriaProduto == null || qtdProduto == "" || precoProduto == "") {
             swal({
                 title: "Cuidado!",
                 text: "Preencha os campos obrigatórios!",
@@ -77,11 +76,33 @@
                 button: "ok"
             });
         } else {
-            swal({
-                title: "Bom trabalho!",
-                text: "Produto cadastrado com sucesso!",
-                icon: "success",
-                button: "ok"
+            debugger;
+            $.ajax({
+                url: "/Home/CadastraProduto",
+                type: 'POST',
+                data: {
+                    codProduto,
+                    nomeProduto,
+                    categoriaProduto,
+                    qtdProduto,
+                    precoProduto
+                },
+                success: function (data) {
+                    swal({
+                        title: "Bom trabalho!",
+                        text: "Produto cadastrado com sucesso!",
+                        icon: "success",
+                        button: "ok"
+                    });
+                    $("#codProd").val("");
+                    $("#nomeProd").val("");
+                    $("#categoriaProd").val("");
+                    $("#qtdProd").val("");
+                    $("#precoProd").val("");
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText);
+                }
             });
         }
     }

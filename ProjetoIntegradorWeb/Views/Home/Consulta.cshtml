@@ -7,4 +7,70 @@
     <h1>Consulta</h1>
 </div>
 
+<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
 
+<br />
+<div id="myGrid" style="height:500px;width:1000px;" class="ag-theme-balham"></div>
+<br />
+
+<button class="btn btn-secondary" onclick="history.go(-1)">Voltar <i class="fa fa-arrow-left"></i></button>
+
+<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        loadGrid();
+    });
+
+    var gridOptions;
+    var columnDefs;
+    var eGridDiv;
+
+
+    function loadGrid() {
+
+        columnDefs = [
+            { headerName: "Codigo Produto", field: "codProduto", sortable: true, filter: true, checkboxSelection: false },
+            { headerName: "Nome Produto", field: "nomeProduto", sortable: true, filter: true },
+            { headerName: "Categoria Produto", field: "categoriaProduto", sortable: true, filter: true },
+            { headerName: "Quantidade", field: "qtdProduto", sortable: true, filter: true },
+            { headerName: "Preço Produto", field: "precoProduto", sortable: true, filter: true }
+        ];
+
+        gridOptions = {
+            columnDefs: columnDefs,
+            rowSelection: 'multiple'
+        };
+
+        eGridDiv = document.querySelector('#myGrid');
+
+        new agGrid.Grid(eGridDiv, gridOptions);
+
+        $.ajax({
+            url: "/Home/BuscaProduto",
+            type: 'GET',
+            success: function (data) {
+                console.log(data);
+                gridOptions.api.setRowData(data);
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+
+    //function getSelectedRows() {
+    //    var selectedNodes = gridOptions.api.getSelectedNodes()
+    //    var selectedData = selectedNodes.map(function (node) { return node.data })
+    //    var selectedDataStringPresentation = selectedData.map(function (node) { return 'Codigo: ' + node.codigo + ',' + ' Ranking: ' + node.ranking + ' Frequencia: ' + node.frequencia }).join('<br />')
+    //    bootbox.alert({
+    //        size: "large",
+    //        title: "<b>Pessoas selecionadas<b>",
+    //        message: selectedDataStringPresentation
+    //    })
+    //}
+
+</script>
