@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjetoIntegradorWeb.Models;
 
 namespace ProjetoIntegradorWeb.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    public class UsuarioController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<UsuarioController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public UsuarioController(ILogger<UsuarioController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult UsuarioHome()
         {
             return View();
         }
@@ -35,7 +38,7 @@ namespace ProjetoIntegradorWeb.Controllers
         }
 
         [HttpPost]
-        [Route("Home/CadastraProduto")]
+        [Route("Usuario/CadastraProduto")]
         public string cadastraProduto(EstoqueModel prod)
         {
             EstoqueCadastraContext context = HttpContext.RequestServices.GetService(typeof(ProjetoIntegradorWeb.Models.EstoqueCadastraContext)) as EstoqueCadastraContext;
@@ -44,12 +47,19 @@ namespace ProjetoIntegradorWeb.Controllers
         }
 
         [HttpGet]
-        [Route("Home/BuscaProduto")]
+        [Route("Usuario/BuscaProduto")]
         public List<EstoqueModel> buscaProduto()
         {
             EstoqueBuscaContext context = HttpContext.RequestServices.GetService(typeof(ProjetoIntegradorWeb.Models.EstoqueBuscaContext)) as EstoqueBuscaContext;
             var result = context.buscaProduto();
             return result;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("LoginUsuario", "Login");
         }
 
 
